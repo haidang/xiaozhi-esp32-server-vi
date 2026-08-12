@@ -1,6 +1,10 @@
-[![Banners](../images/banner1.png)](https://github.com/xinnan-tech/xiaozhi-esp32-server)
+[![Banners](../images/banner1.png)](https://github.com/haidang/xiaozhi-esp32-server-vi)
 
-<h1 align="center">Dịch vụ Backend Xiaozhi xiaozhi-esp32-server</h1>
+> **Fork tiếng Việt:** [haidang/xiaozhi-esp32-server-vi](https://github.com/haidang/xiaozhi-esp32-server-vi)  
+> Bản fork của [xinnan-tech/xiaozhi-esp32-server](https://github.com/xinnan-tech/xiaozhi-esp32-server).  
+> **Bản quyền:** MIT — Copyright (c) 2025 xinnan-tech; Copyright (c) 2026 haidang (phần chỉnh sửa/tài liệu VI của fork). Xem [LICENSE](../../LICENSE) và [NOTICE](../../NOTICE).
+
+<h1 align="center">Dịch vụ Backend Xiaozhi xiaozhi-esp32-server-vi</h1>
 
 <p align="center">
 Dự án này dựa trên lý thuyết và công nghệ trí tuệ cộng sinh người-máy để phát triển hệ thống phần mềm và phần cứng thiết bị đầu cuối thông minh<br/>Cung cấp dịch vụ backend cho dự án phần cứng thông minh mã nguồn mở

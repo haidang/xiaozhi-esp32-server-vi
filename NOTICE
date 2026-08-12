@@ -1,0 +1,32 @@
+NOTICE
+======
+
+xiaozhi-esp32-server-vi
+https://github.com/haidang/xiaozhi-esp32-server-vi
+
+This repository is a fork of:
+
+  xiaozhi-esp32-server
+  https://github.com/xinnan-tech/xiaozhi-esp32-server
+
+Copyright (c) 2025 xinnan-tech
+
+Licensed under the MIT License. See the LICENSE file in this repository.
+The original copyright notice and permission notice must be included in all
+copies or substantial portions of the Software.
+
+Fork / Vietnamese localization and subsequent modifications:
+
+  Copyright (c) 2026 haidang (https://github.com/haidang)
+
+The fork copyright above covers only changes unique to this fork
+(documentation in Vietnamese, configuration notes, and any code patches
+added in this repository). It does not claim ownership of the original
+xiaozhi-esp32-server codebase.
+
+Upstream project leadership (as stated by upstream):
+  Spearheaded by Professor Siyuan Liu's Team
+  (South China University of Technology / 华南理工大学)
+
+Third-party services (ASR, LLM, TTS, cloud APIs, etc.) remain the property
+of their respective providers and are not covered by this NOTICE.
