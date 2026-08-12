@@ -1,4 +1,4 @@
-# Docker安装Server
+# Docker: chỉ chạy Server (không gồm Admin Console / DB)
 
 version: '3'
 services:
@@ -9,14 +9,17 @@ services:
     security_opt:
       - seccomp:unconfined
     environment:
-      - TZ=UTC
+      # Múi giờ Việt Nam (GMT+7)
+      - TZ=Asia/Ho_Chi_Minh
     ports:
-      # ws服务端
-      - "8000:8000"
-      # http服务的端口，用于简单OTA接口(单服务部署)，以及视觉分析接口
-      - "8003:8003"
+      # WebSocket thoại — host 8006 → container 8000
+      - "8006:8000"
+      # Vision — host 8007 → container 8003
+      - "8007:8003"
+      # OTA (deploy 1 service) — host 8009 → container 8003
+      - "8009:8003"
     volumes:
-      # 配置文件目录
+      # Thư mục cấu hình
       - ./data:/opt/xiaozhi-esp32-server/data
-      # 模型文件挂接，很重要
+      # Mount file model ASR — bắt buộc
       - ./models/SenseVoiceSmall/model.pt:/opt/xiaozhi-esp32-server/models/SenseVoiceSmall/model.pt

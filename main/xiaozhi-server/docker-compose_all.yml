@@ -1,8 +1,8 @@
-# Docker安装全模块
+# Docker: cài đặt full module (Server + Admin Console + MySQL + Redis)
 
 version: '3'
 services:
-  # Server模块
+  # Module Server
   xiaozhi-esp32-server:
     image: ghcr.nju.edu.cn/xinnan-tech/xiaozhi-esp32-server:server_latest
     container_name: xiaozhi-esp32-server
@@ -13,21 +13,22 @@ services:
     networks:
       - default
     ports:
-      # ws服务端
-      - "8000:8000"
-      # http服务的端口，用于视觉分析接口
-      - "8003:8003"
+      # WebSocket thoại — host 8006 → container 8000
+      - "8006:8000"
+      # Vision HTTP — host 8007 → container 8003
+      - "8007:8003"
     security_opt:
       - seccomp:unconfined
     environment:
-      - TZ=Asia/Shanghai
+      # Múi giờ Việt Nam (GMT+7)
+      - TZ=Asia/Ho_Chi_Minh
     volumes:
-      # 配置文件目录
+      # Thư mục cấu hình
       - ./data:/opt/xiaozhi-esp32-server/data
-      # 模型文件挂接，很重要
+      # Mount file model ASR — bắt buộc
       - ./models/SenseVoiceSmall/model.pt:/opt/xiaozhi-esp32-server/models/SenseVoiceSmall/model.pt
 
-  # manager-api和manager-web模块
+  # Module manager-api + manager-web (Admin Console)
   xiaozhi-esp32-server-web:
     image: ghcr.nju.edu.cn/xinnan-tech/xiaozhi-esp32-server:web_latest
     container_name: xiaozhi-esp32-server-web
@@ -40,20 +41,22 @@ services:
       xiaozhi-esp32-server-redis:
         condition: service_healthy
     ports:
-      # 智控台
-      - "8002:8002"
+      # Admin Console (duyệt web) — host 8008 → container 8002
+      - "8008:8002"
+      # OTA — host 8009 → cùng service container 8002
+      - "8009:8002"
     environment:
-      - TZ=Asia/Shanghai
-      - SPRING_DATASOURCE_DRUID_URL=jdbc:mysql://xiaozhi-esp32-server-db:3306/xiaozhi_esp32_server?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true&connectTimeout=30000&socketTimeout=30000&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
+      - TZ=Asia/Ho_Chi_Minh
+      - SPRING_DATASOURCE_DRUID_URL=jdbc:mysql://xiaozhi-esp32-server-db:3306/xiaozhi_esp32_server?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Ho_Chi_Minh&nullCatalogMeansCurrent=true&connectTimeout=30000&socketTimeout=30000&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
       - SPRING_DATASOURCE_DRUID_USERNAME=root
       - SPRING_DATASOURCE_DRUID_PASSWORD=123456
       - SPRING_DATA_REDIS_HOST=xiaozhi-esp32-server-redis
       - SPRING_DATA_REDIS_PASSWORD=
       - SPRING_DATA_REDIS_PORT=6379
     volumes:
-      # 配置文件目录
+      # Thư mục upload
       - ./uploadfile:/uploadfile
-  # 数据库模块
+  # Module database
   xiaozhi-esp32-server-db:
     image: mysql:latest
     container_name: xiaozhi-esp32-server-db
@@ -70,11 +73,11 @@ services:
     volumes:
       - ./mysql/data:/var/lib/mysql
     environment:
-      - TZ=Asia/Shanghai
+      - TZ=Asia/Ho_Chi_Minh
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_DATABASE=xiaozhi_esp32_server
       - MYSQL_INITDB_ARGS="--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
-  # redis模块
+  # Module Redis
   xiaozhi-esp32-server-redis:
     image: redis:8.0
     expose:
