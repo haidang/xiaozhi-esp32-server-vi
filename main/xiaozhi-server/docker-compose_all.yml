@@ -43,8 +43,8 @@ services:
     ports:
       # Admin Console (duyệt web) — host 8008 → container 8002
       - "8008:8002"
-      # OTA — host 8009 → cùng service container 8002
-      - "8009:8002"
+      # OTA — host 8005 → cùng service container 8002
+      - "8005:8002"
     environment:
       - TZ=Asia/Ho_Chi_Minh
       - SPRING_DATASOURCE_DRUID_URL=jdbc:mysql://xiaozhi-esp32-server-db:3306/xiaozhi_esp32_server?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Ho_Chi_Minh&nullCatalogMeansCurrent=true&connectTimeout=30000&socketTimeout=30000&autoReconnect=true&failOverReadOnly=false&maxReconnects=10
